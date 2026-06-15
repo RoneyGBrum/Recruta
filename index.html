@@ -3257,40 +3257,53 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
     <!-- NOVA SEÇÃO: CONSULTOR GEMINI API EM TEMPO REAL (MATCH VAGA VS CURRÍCULO)  -->
     <!-- ========================================================================= -->
     <section id="gemini-live-section" class="py-24 px-6 md:px-12 lg:px-24 bg-[#020617] text-white border-t border-white/5 relative z-50">
-        <!-- Background effects -->
         <div class="absolute inset-0 z-0 pointer-events-none">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-600/10 rounded-full blur-[120px]"></div>
         </div>
 
         <div class="max-w-7xl mx-auto relative z-10">
-            <!-- Header da Nova Seção -->
             <div class="text-center mb-16">
                 <div class="inline-flex items-center px-4 py-1.5 bg-indigo-500/10 text-indigo-400 font-bold text-xs rounded-full mb-6 border border-indigo-500/20 tracking-widest uppercase shadow-[0_0_15px_rgba(99,102,241,0.2)]">
                     <i class="fa-solid fa-wand-magic-sparkles mr-2 animate-pulse"></i> Powered by Gemma 2
                 </div>
                 <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-                    Simulação Recruta.gov ao Vivo.
-                    https://gemini.google.com/share/b43c94234845
+                    <a href="https://gemini.google.com/share/b43c94234845" target="_blank" class="hover:text-indigo-400 transition-colors duration-300">
+                        Simulação Recruta.gov ao Vivo.
+                    </a>
                 </h2>
                 <p class="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-                    Compare a exigência de uma vaga com o currículo de um candidato. Cole os textos ou <strong>anexe um PDF</strong> e veja a Inteligência Artificial mapear o grau de aderência em tempo real.
+                    Compare a exigência de uma vaga com o currículo de um candidato. Cole os textos, <strong>anexe um PDF</strong> ou utilize nossos exemplos para ver a Inteligência Artificial mapear o grau de aderência em tempo real.
                 </p>
             </div>
 
-            <!-- Interface Interativa do Gemini -->
             <div class="flex flex-col lg:flex-row gap-8 items-stretch bg-white/5 p-6 md:p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-xl shadow-2xl">
                 
-                <!-- Coluna de Entrada (Input) -->
                 <div class="w-full lg:w-5/12 flex flex-col gap-6">
                     
-                    <!-- Box Vaga -->
+                    <div class="bg-black/20 border border-white/5 rounded-xl p-4">
+                        <label class="font-bold text-gray-400 text-[0.65rem] uppercase tracking-widest flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-bolt"></i> Carregar Exemplos Prontos
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button onclick="carregarExemplo1()" class="flex-1 text-left bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 p-3 rounded-lg transition-all text-xs group">
+                                <div class="font-bold text-indigo-300 mb-1 group-hover:text-indigo-200">Exemplo 1</div>
+                                <div class="text-gray-400 truncate" title="RONEY GUIMARAES BRUM.pdf"><i class="fa-solid fa-paperclip mr-1"></i> RONEY GUIMARAES BRUM.pdf</div>
+                                <div class="text-gray-400 truncate" title="edital_oportunidade_21259.pdf"><i class="fa-solid fa-paperclip mr-1"></i> edital_oportunidade_21259.pdf</div>
+                            </button>
+                            <button onclick="carregarExemplo2()" class="flex-1 text-left bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 p-3 rounded-lg transition-all text-xs group">
+                                <div class="font-bold text-emerald-300 mb-1 group-hover:text-emerald-200">Exemplo 2</div>
+                                <div class="text-gray-400 truncate" title="RONEY GUIMARAES BRUM.pdf"><i class="fa-solid fa-paperclip mr-1"></i> RONEY GUIMARAES BRUM.pdf</div>
+                                <div class="text-gray-400 truncate" title="Edital 1298 -2025 - Especialista em Energia - Áustria V1.pdf"><i class="fa-solid fa-paperclip mr-1"></i> Edital 1298 -2025...pdf</div>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="flex flex-col gap-2">
                         <div class="flex justify-between items-center">
                             <label class="font-bold text-orange-400 text-xs uppercase tracking-widest flex items-center gap-2">
                                 <i class="fa-solid fa-bullseye"></i> Perfil / Descrição da Vaga
                             </label>
                             
-                            <!-- Botão de Upload PDF Edital -->
                             <label id="pdf-upload-vaga-label" class="cursor-pointer bg-red-500/10 border border-red-500/20 text-red-400 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-red-500/20 transition-all flex items-center gap-2">
                                 <i class="fa-solid fa-file-pdf"></i> Anexar Edital
                                 <input type="file" id="pdf-upload-vaga" accept=".pdf" class="hidden" onchange="handlePDFUpload(event, 'gemini-vaga-input', 'pdf-upload-vaga-label')">
@@ -3299,14 +3312,12 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
                         <textarea id="gemini-vaga-input" class="w-full h-[120px] bg-black/40 border border-orange-500/30 rounded-xl p-4 text-gray-300 font-mono text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all outline-none resize-none placeholder:text-gray-700 custom-scrollbar" placeholder="Cole os requisitos técnicos da vaga ou clique no botão acima para extrair direto do PDF do Edital..."></textarea>
                     </div>
 
-                    <!-- Box Currículo -->
                     <div class="flex flex-col gap-2">
                         <div class="flex justify-between items-center">
                             <label class="font-bold text-indigo-300 text-xs uppercase tracking-widest flex items-center gap-2">
                                 <i class="fa-regular fa-file-lines"></i> Histórico do Candidato
                             </label>
                             
-                            <!-- Botão de Upload PDF Currículo -->
                             <label id="pdf-upload-label" class="cursor-pointer bg-red-500/10 border border-red-500/20 text-red-400 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-red-500/20 transition-all flex items-center gap-2">
                                 <i class="fa-solid fa-file-pdf"></i> Extrair Currículo
                                 <input type="file" id="pdf-upload" accept=".pdf" class="hidden" onchange="handlePDFUpload(event, 'gemini-curriculo-input', 'pdf-upload-label')">
@@ -3324,29 +3335,24 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
                     </button>
                 </div>
 
-                <!-- Coluna de Saída (Output) -->
                 <div class="w-full lg:w-7/12 flex flex-col gap-4">
                     <label class="font-bold text-emerald-400 text-sm uppercase tracking-widest flex items-center gap-2">
                         <i class="fa-solid fa-satellite-dish"></i> Telemetria de Aderência
                     </label>
                     <div class="w-full flex-grow bg-white border border-slate-200 rounded-[2rem] p-6 relative overflow-hidden shadow-inner flex flex-col">
                         
-                        <!-- Estado Vazio -->
                         <div id="gemini-empty-state" class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 bg-[#0f172a] z-20">
                             <i class="fa-solid fa-network-wired text-4xl mb-3 opacity-50"></i>
                             <p class="text-sm font-medium uppercase tracking-widest">Aguardando Dados...</p>
                         </div>
 
-                        <!-- Estado de Erro -->
                         <div id="gemini-error-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-red-500 p-6 text-center bg-red-50 z-20">
                             <i class="fa-solid fa-circle-exclamation text-4xl mb-3"></i>
                             <p id="gemini-error-text" class="text-sm font-bold">Erro ao processar a requisição.</p>
                         </div>
 
-                        <!-- Estado de Sucesso (Resultados) -->
                         <div id="gemini-result-state" class="hidden flex-grow flex flex-col opacity-0 transition-opacity duration-500">
                             
-                            <!-- Gráfico Comparativo -->
                             <div class="w-full h-[280px] mb-4 relative flex items-center justify-center">
                                 <canvas id="liveMatchChart"></canvas>
                             </div>
@@ -3368,12 +3374,10 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
                                     <p id="gemini-parecer" class="text-sm text-slate-700 leading-relaxed font-medium"></p>
                                 </div>
 
-                                <!-- Detalhamento por Dimensão -->
                                 <div class="mt-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex-shrink-0">
                                     <h4 class="text-[0.65rem] font-black text-slate-600 uppercase tracking-widest mb-3"><i class="fa-solid fa-list-check mr-1"></i> Detalhamento por Dimensão</h4>
                                     <div id="gemini-detalhamento" class="flex flex-col gap-3">
-                                        <!-- Os cards de explicação de cada dimensão aparecerão aqui -->
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -3383,6 +3387,9 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
             </div>
         </div>
     </section>
+
+
+    
 
     <!-- Estilos para Scrollbars Personalizadas -->
     <style>
