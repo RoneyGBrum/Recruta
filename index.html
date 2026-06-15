@@ -3388,9 +3388,6 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
         </div>
     </section>
 
-
-    
-
     <!-- Estilos para Scrollbars Personalizadas -->
     <style>
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -3705,11 +3702,110 @@ Justifique o motivo de cada uma das 9 notas atribuídas ao candidato (pontuando 
             } else {
                 containerDetalhamento.innerHTML = '<span class="text-[0.65rem] text-gray-400 italic">Detalhamento não gerado pela IA.</span>';
             }
-        }
-
-        
+        } 
         
     </script>
 
+    <script>
+
+        // =========================================================================
+    // TEXTOS EXTRAÍDOS DOS DOCUMENTOS PARA SIMULAÇÃO
+    // =========================================================================
+
+        const textoCurriculoRoney = `
+        DADOS PESSOAIS E FUNCIONAIS:
+        RONEY GUIMARAES BRUM[cite: 197, 200].
+        Cargo Público Efetivo: ANALISTA TECNICO EXECUTIVO[cite: 203]. 
+        Função/DAS: FUNCÃO COMISSIONADA EXECUTIVA - CHEFE DE DIVISAO[cite: 204]. 
+        Órgão de Exercício: MIN GESTAO E INOV EM SERV PUBLICOS[cite: 204].
+
+        SOBRE:
+        Interessado em desenvolver ideias e facilitar atividades cotidianas, relacionadas a banco de dados com a utilização da linguagem Python, principalmente com a biblioteca Pandas[cite: 208]. Utilizo da ciência de dados para elaboração de apresentações interativas com Power BI[cite: 209]. Experiências com a utilização do DW SIAPE e Extrator SIAPE[cite: 210]. Utilizo ferramentas de IA (Inteligência Atificial) para auxiliar no desenvolvimento e criação de aplicações[cite: 211, 212].
+
+        FORMAÇÃO ACADÊMICA:
+        - ESPECIALIZAÇÃO - CIÊNCIA DE DADOS (BIG DATA PROCESSING AND ANALYTICS) - UNIVERSIDADE MACKENZIE (2022-2023)[cite: 221, 222, 223].
+        - GRADUAÇÃO - ADMINISTRAÇÃO - CENTRO UNIVERSITÁRIO ESTÁCIO RIBEIRÃO PRETO (2008-2012)[cite: 224, 225, 226].
+
+        EXPERIÊNCIA PROFISSIONAL:
+        - ADMINISTRADOR - Analista de Dados no Ministério da Gestão e da Inovação em Serviços Públicos (11/2024 - Atual)[cite: 238, 239]. Atuação na criação, desenvolvimento e manutenção de painéis informativos com dados de servidores da rede SIPEC[cite: 240]. Responsável pela extração, tratamento e análise de grandes volumes de dados oriundos do Data Warehouse (DW), extrator SIAPE, DataLake e outras fontes, utilizando as linguagens de programação Python e SQL[cite: 241, 249]. Desenvolvimento de scripts de automação para otimização de tarefas repetitivas[cite: 250]. Idealização e implementação de metodologia para classificação de servidores com base em informações curriculares[cite: 251].
+        - ADMINISTRADOR no Ministério da Saúde (08/2023 - 11/2024)[cite: 253, 254, 255]. Criação, desenvolvimento e manutenção de paineis de informações de pessoal do Ministério da Saúde (com a utilização do Power BI)[cite: 256]. Tratamento de dados extraídos do DW e extrator SIAPE com a utilização da linguagem de programação Python[cite: 257].
+        `;
+
+        const textoEdital21259 = `
+        DADOS DA VAGA:
+        Oportunidade de atuação na Coordenação-Geral de Movimentação de Pessoal (CGMOP)[cite: 100]. 
+        Tipo de Movimentação: Alteração de Exercício para Composição da Força de Trabalho[cite: 102].
+        Cargo: GSISTE - Assistente de Suporte à Gestão de Dados - Nível Intermediário[cite: 128].
+
+        PERFIL DESEJADO:
+        Busca-se um profissional com perfil de apoio técnico para auxiliar na organização e manutenção das rotinas de dados da coordenação[cite: 103]. O servidor selecionado atuará no suporte operacional ao ciclo de vida dos dados, auxiliando na execução de extrações, na atualização de bases de informações e na manutenção de rotinas administrativas automatizadas[cite: 104]. Durante a atuação, o servidor terá a oportunidade de aprender na prática ferramentas essenciais e valorizadas no mercado, como Python, Power BI e técnicas de automação[cite: 106]. 
+
+        REQUISITOS TÉCNICOS:
+        - PYTHON PARA ANÁLISE DE DADOS (Desejável) [cite: 142]
+        - ANÁLISE DE DADOS EM LINGUAGEM R (Desejável) [cite: 143]
+        - ELABORAÇÃO DE PAINÉIS DINÁMICOS EM POWER BI. (Desejável) [cite: 144]
+
+        VÍNCULO EXIGIDO:
+        - SERVIDOR PÚBLICO FEDERAL EFETIVO (P. EXECUTIVO) (Exceto estágio probatório) (Obrigatório)[cite: 152].
+
+        ATIVIDADES PRINCIPAIS:
+        Apoio na Extração e Tratamento de Dados [cite: 155], Manutenção de Painéis (BI) [cite: 156], Execução de Processos Automatizados [cite: 157], Suporte à Análise de Dados [cite: 158] e Organização da Informação[cite: 159].
+        `;
+
+        const textoEditalAustria = `
+        DADOS DA VAGA:
+        INTERCAMBIO TÉCNICO-PROFISSIONAL COM O BANCO MUNDIAL[cite: 3].
+        Cargo: Especialista em Energia - Áustria[cite: 52].
+        Unidade Organizacional: Diretoria de Provimento e Movimentação de Pessoal[cite: 53].
+
+        PERFIL E ATRIBUIÇÕES:
+        Versão resumida: Atuar no desenvolvimento de soluções sustentáveis para reduzir lacunas de infraestrutura e na execução de projetos e atividades de energia na Europa e Ásia Central, sob a supervisão da Unidade de Infraestrutura Regional vinculada à Vice-Presidência para a Europa e Asia Central[cite: 57]. 
+
+        REQUISITOS OBRIGATÓRIOS:
+        Requer Mestrado em Ciências, engenharia, economia ou finanças experiência relevante no setor energético em áreas como eficiência energética, política e regulação do setor, energias renováveis ou integração regional[cite: 58]. 
+
+        VÍNCULO DESEJADO:
+        - EMPREGADO PÚBLICO (Desejável) [cite: 61]
+        - SERVIDOR PÚBLICO FEDERAL EFETIVO (P. EXECUTIVO) (Desejável) [cite: 62]
+
+        SOBRE O INTERCÂMBIO:
+        O intercâmbio tem duração de um ano, período durante o qual o participante atuará diretamente em projetos estratégicos do Banco Mundial, em colaboração com equipes locais e internacionais[cite: 14]. Ao término da experiência, está previsto o retorno obrigatório à instituição de origem, garantindo a transferência do conhecimento adquirido e a aplicação das boas práticas aprendidas[cite: 15].
+        `;
+
+        // =========================================================================
+        // FUNÇÕES DE INJEÇÃO DOS EXEMPLOS
+        // =========================================================================
+
+        function carregarExemplo1() {
+            document.getElementById('gemini-curriculo-input').value = textoCurriculoRoney.trim();
+            document.getElementById('gemini-vaga-input').value = textoEdital21259.trim();
+            
+            document.getElementById('pdf-upload-label').innerHTML = '<i class="fa-solid fa-check"></i> Currículo Carregado';
+            document.getElementById('pdf-upload-label').classList.replace('text-red-400', 'text-emerald-400');
+            document.getElementById('pdf-upload-label').classList.replace('border-red-500/20', 'border-emerald-500/20');
+            document.getElementById('pdf-upload-label').classList.replace('bg-red-500/10', 'bg-emerald-500/10');
+            
+            document.getElementById('pdf-upload-vaga-label').innerHTML = '<i class="fa-solid fa-check"></i> Edital Carregado';
+            document.getElementById('pdf-upload-vaga-label').classList.replace('text-red-400', 'text-emerald-400');
+            document.getElementById('pdf-upload-vaga-label').classList.replace('border-red-500/20', 'border-emerald-500/20');
+            document.getElementById('pdf-upload-vaga-label').classList.replace('bg-red-500/10', 'bg-emerald-500/10');
+        }
+
+        function carregarExemplo2() {
+            document.getElementById('gemini-curriculo-input').value = textoCurriculoRoney.trim();
+            document.getElementById('gemini-vaga-input').value = textoEditalAustria.trim();
+
+            document.getElementById('pdf-upload-label').innerHTML = '<i class="fa-solid fa-check"></i> Currículo Carregado';
+            document.getElementById('pdf-upload-label').classList.replace('text-red-400', 'text-emerald-400');
+            document.getElementById('pdf-upload-label').classList.replace('border-red-500/20', 'border-emerald-500/20');
+            document.getElementById('pdf-upload-label').classList.replace('bg-red-500/10', 'bg-emerald-500/10');
+
+            document.getElementById('pdf-upload-vaga-label').innerHTML = '<i class="fa-solid fa-check"></i> Edital Carregado';
+            document.getElementById('pdf-upload-vaga-label').classList.replace('text-red-400', 'text-emerald-400');
+            document.getElementById('pdf-upload-vaga-label').classList.replace('border-red-500/20', 'border-emerald-500/20');
+            document.getElementById('pdf-upload-vaga-label').classList.replace('bg-red-500/10', 'bg-emerald-500/10');
+        }
+
+    </script>
 </body>
 </html>
