@@ -430,7 +430,205 @@
     </section>
     <!-- ========================================================================= -->
   
+    <!-- ========================================================================= -->
+    <!-- SEÇÃO: BUSCA ATIVA DE TALENTOS (O FAROL QUE ENCONTRA A AGULHA)            -->
+    <!-- ========================================================================= -->
+    <style>
+        @keyframes spotlightSweep {
+            0%   { transform: translateX(-30%) rotate(-8deg); }
+            50%  { transform: translateX(30%) rotate(8deg); }
+            100% { transform: translateX(-30%) rotate(-8deg); }
+        }
+        .anim-spotlight { animation: spotlightSweep 6s ease-in-out infinite; }
 
+        @keyframes lockPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.5); transform: scale(1); }
+            50%      { box-shadow: 0 0 0 18px rgba(0,230,118,0); transform: scale(1.08); }
+        }
+        .anim-lock { animation: lockPulse 2.2s infinite; }
+
+        @keyframes dotFloat {
+            0%, 100% { opacity: 0.25; }
+            50%      { opacity: 0.7; }
+        }
+        .talent-dot { animation: dotFloat 4s ease-in-out infinite; }
+
+        @keyframes scanLineMove {
+            0%   { top: 0%; opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-line { animation: scanLineMove 4s linear infinite; }
+    </style>
+
+<!-- ========================================================================= -->
+    <!-- SEÇÃO: BUSCA ATIVA DE TALENTOS (O FAROL QUE ENCONTRA A AGULHA) - COMPACTA  -->
+    <!-- ========================================================================= -->
+    <style>
+        @keyframes spotlightSweep {
+            0%   { transform: translateX(-30%) rotate(-8deg); }
+            50%  { transform: translateX(30%) rotate(8deg); }
+            100% { transform: translateX(-30%) rotate(-8deg); }
+        }
+        .anim-spotlight { animation: spotlightSweep 6s ease-in-out infinite; }
+
+        @keyframes lockPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.5); transform: scale(1); }
+            50%      { box-shadow: 0 0 0 16px rgba(0,230,118,0); transform: scale(1.08); }
+        }
+        .anim-lock { animation: lockPulse 2.2s infinite; }
+
+        @keyframes dotFloat {
+            0%, 100% { opacity: 0.25; }
+            50%      { opacity: 0.7; }
+        }
+        .talent-dot { animation: dotFloat 4s ease-in-out infinite; }
+
+        @keyframes scanLineMove {
+            0%   { top: 0%; opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-line { animation: scanLineMove 4s linear infinite; }
+
+        /* Entrada suave da seção ao surgir na tela */
+        @keyframes softReveal {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        #busca-ativa .reveal-on-scroll {
+            opacity: 0;
+        }
+        #busca-ativa.is-visible .reveal-on-scroll {
+            animation: softReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        #busca-ativa.is-visible .reveal-d1 { animation-delay: 0.1s; }
+        #busca-ativa.is-visible .reveal-d2 { animation-delay: 0.3s; }
+        #busca-ativa.is-visible .reveal-d3 { animation-delay: 0.5s; }
+    </style>
+
+    <section id="busca-ativa" class="relative min-h-screen flex flex-col justify-center py-12 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-[#0a1838] via-[#04102a] to-[#020617] overflow-hidden border-t border-white/5">
+
+        <!-- Afterglow da logo (continuidade) + glow verde do resultado -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <!-- Bloom azul/branco descendo do clímax da logo -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-govblue-500/15 rounded-full blur-[120px]"></div>
+            <div class="absolute top-[-40px] left-1/2 -translate-x-1/2 w-[300px] h-[160px] bg-white/10 rounded-full blur-[100px]"></div>
+            <!-- Glow verde (o resultado: o match) -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-govgreen-500/10 rounded-full blur-[130px]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10 w-full">
+
+            <!-- Continuidade da Logo (eco do clímax da seção anterior) -->
+            <div class="reveal-on-scroll reveal-d1 flex flex-col items-center mb-6">
+                <div class="flex items-center justify-center gap-2 opacity-90 drop-shadow-[0_0_25px_rgba(19,81,180,0.4)]">
+                    <i class="fa-solid fa-building-columns text-govblue-500 text-xl md:text-2xl drop-shadow-md"></i>
+                    <span class="text-xl md:text-2xl font-extrabold text-white tracking-tight drop-shadow-md">Recruta<span class="text-govblue-500">.gov</span></span>
+                </div>
+                <div class="w-[1px] h-8 bg-gradient-to-b from-govblue-500/70 to-govgreen-500/40 mt-3"></div>
+                <span class="text-[0.55rem] text-gray-500 uppercase tracking-[0.3em] mt-2">o resultado em ação</span>
+            </div>
+
+            <!-- Cabeçalho -->
+            <div class="reveal-on-scroll reveal-d1 text-center mb-7">
+                <div class="inline-flex items-center px-4 py-1 bg-govgreen-500/10 text-govgreen-500 font-bold text-[0.65rem] rounded-full mb-4 border border-govgreen-500/20 tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(0,230,118,0.2)]">
+                    <i class="fa-solid fa-crosshairs mr-2 animate-pulse"></i> Recrutamento Proativo
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 tracking-tight">
+                    Não espera o candidato.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-govgreen-500">Vai atrás do talento certo.</span>
+                </h2>
+                <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-light">
+                    Enquanto o método tradicional aguarda inscrições, o <strong class="text-white">Recruta.gov</strong> varre ativamente a base de servidores, ilumina os perfis aderentes e trava no alvo ideal.
+                </p>
+            </div>
+
+            <!-- Palco da Busca (altura reduzida) -->
+            <div class="reveal-on-scroll reveal-d2 relative w-full h-[230px] md:h-[280px] rounded-[2rem] overflow-hidden border border-white/10 bg-[#030914] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+
+                <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(19,81,180,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(19,81,180,0.4) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+                <div class="scan-line absolute left-0 w-full h-20 bg-gradient-to-b from-transparent via-emerald-400/20 to-transparent pointer-events-none"></div>
+
+                <!-- Constelação de talentos anônimos -->
+                <div class="absolute inset-0">
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-base" style="top:18%; left:12%; animation-delay:0s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-sm" style="top:38%; left:28%; animation-delay:0.5s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-xl" style="top:68%; left:16%; animation-delay:1s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-base" style="top:80%; left:40%; animation-delay:1.5s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-lg" style="top:22%; left:64%; animation-delay:0.3s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-sm" style="top:50%; left:80%; animation-delay:0.8s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-xl" style="top:72%; left:72%; animation-delay:1.2s;"></i>
+                    <i class="fa-solid fa-user talent-dot absolute text-white/30 text-base" style="top:30%; left:88%; animation-delay:1.7s;"></i>
+                </div>
+
+                <!-- Facho de luz varrendo a base -->
+                <div class="anim-spotlight absolute top-0 left-1/2 -translate-x-1/2 w-[220px] h-full bg-gradient-to-b from-emerald-400/25 via-emerald-400/5 to-transparent blur-2xl pointer-events-none"></div>
+
+                <!-- O TALENTO ENCONTRADO -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div class="anim-lock w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-govgreen-500 to-emerald-600 flex items-center justify-center shadow-[0_0_40px_rgba(0,230,118,0.6)] border-2 border-white/30">
+                        <i class="fa-solid fa-user-check text-white text-2xl md:text-3xl"></i>
+                    </div>
+                    <div class="mt-4 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center gap-2 shadow-[0_0_20px_rgba(0,230,118,0.2)]">
+                        <span class="w-1.5 h-1.5 bg-govgreen-500 rounded-full animate-pulse"></span>
+                        <span class="text-emerald-300 text-[0.6rem] font-bold uppercase tracking-[0.2em] font-mono">Match Travado</span>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_40%,#020617_100%)] pointer-events-none"></div>
+            </div>
+
+            <!-- Três pilares (compactos) -->
+            <div class="reveal-on-scroll reveal-d3 grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center backdrop-blur-md transition hover:border-emerald-500/30 duration-300">
+                    <i class="fa-solid fa-radar text-2xl text-govgreen-500 mb-2"></i>
+                    <h3 class="font-bold text-white text-sm mb-1">Varredura Total</h3>
+                    <p class="text-xs text-gray-400 leading-snug">A base inteira é escaneada, sem depender de inscrição voluntária.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center backdrop-blur-md transition hover:border-emerald-500/30 duration-300">
+                    <i class="fa-solid fa-bolt text-2xl text-govgreen-500 mb-2"></i>
+                    <h3 class="font-bold text-white text-sm mb-1">Resgate de Ocultos</h3>
+                    <p class="text-xs text-gray-400 leading-snug">Perfis invisíveis ao CTRL+F são iluminados pelo contexto semântico.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center backdrop-blur-md transition hover:border-emerald-500/30 duration-300">
+                    <i class="fa-solid fa-crosshairs text-2xl text-govgreen-500 mb-2"></i>
+                    <h3 class="font-bold text-white text-sm mb-1">Trava no Alvo</h3>
+                    <p class="text-xs text-gray-400 leading-snug">O gestor recebe os candidatos certos, prontos para a decisão final.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Divisor inferior: separa visualmente da próxima seção -->
+        <div class="relative z-10 mt-10 flex items-center justify-center gap-4 max-w-6xl mx-auto w-full">
+            <div class="h-[1px] flex-grow bg-gradient-to-r from-transparent to-govgreen-500/30"></div>
+            <span class="text-[0.6rem] text-gray-500 uppercase tracking-[0.3em] whitespace-nowrap">Como a varredura acontece</span>
+            <div class="h-[1px] flex-grow bg-gradient-to-l from-transparent to-govgreen-500/30"></div>
+        </div>
+    </section>
+
+    <script>
+        // Dispara a entrada suave quando a seção entra na tela
+        (function () {
+            const sec = document.getElementById('busca-ativa');
+            if (!sec) return;
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        sec.classList.add('is-visible');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.25 });
+            obs.observe(sec);
+        })();
+    </script>
+    <!-- ========================================================================= -->
+    <!-- ========================================================================= -->
 
     <!-- ========================================================================= -->
     <!-- ESTILOS DA ANIMAÇÃO DO MOTOR DE DADOS (FAXINA)                            -->
@@ -618,40 +816,39 @@
         }
     </style>
 
-    <section id="analogia-automotiva" class="relative py-32 px-6 md:px-12 lg:px-24 bg-[#020617] overflow-hidden border-t border-white/5">
+    <section id="analogia-automotiva" class="relative py-12 px-6 md:px-12 lg:px-24 bg-[#020617] overflow-hidden border-t border-white/5">
         
         <div class="max-w-7xl mx-auto relative z-10">
             
             <!-- Cabeçalho -->
-            <div class="text-center mb-12">
-                <div class="inline-flex items-center px-4 py-1.5 bg-govblue-500/10 text-gray-400 font-bold text-xs rounded-full mb-6 border border-govblue-500/20 tracking-widest uppercase shadow-[0_0_15px_rgba(19,81,180,0.2)]">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center px-4 py-1 bg-govblue-500/10 text-gray-400 font-bold text-[0.65rem] rounded-full mb-3 border border-govblue-500/20 tracking-widest uppercase shadow-[0_0_15px_rgba(19,81,180,0.2)]">
                     <i class="fa-solid fa-route mr-2"></i> A Evolução do Motor de Busca
                 </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">
                     Do Esforço Manual à <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400">Navegação Autônoma</span>
                 </h2>
-                <!-- Texto ajustado para a filosofia "Human-in-the-loop" -->
-                <p class="text-gray-400 text-lg max-w-4xl mx-auto leading-relaxed">
+                <p class="text-gray-400 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
                     Buscar o talento ideal em uma base de mais de 250 mil currículos é como cruzar o país. Você pode ir de Fusca, lendo placa por placa, ou ligar o piloto automático de um veículo com inteligência artificial, que mapeia o trajeto e sugere a melhor rota. <strong>O trabalho pesado fica com a máquina, mas é você quem senta no banco do motorista e dá a palavra final.</strong>
                 </p>
             </div>
 
             <!-- Controles do HUD (Heads-Up Display) -->
-            <div class="flex justify-center mb-10 relative z-30">
+            <div class="flex justify-center mb-6 relative z-30">
                 <div class="bg-[#0f172a] p-2 rounded-2xl border border-slate-700/50 flex shadow-2xl relative">
                     <div id="toggle-selector" class="absolute w-1/2 h-[calc(100%-16px)] bg-gradient-to-r from-amber-700 to-amber-900 rounded-xl top-2 left-2 car-transition border border-amber-600 shadow-md"></div>
                     
-                    <button onclick="switchCarMode('fusca')" id="btn-fusca" class="relative z-10 px-6 md:px-8 py-3 w-40 md:w-48 text-xs md:text-sm font-bold text-white transition-colors duration-300 focus:outline-none flex items-center justify-center gap-2">
+                    <button onclick="switchCarMode('fusca')" id="btn-fusca" class="relative z-10 px-6 md:px-8 py-2.5 w-40 md:w-48 text-xs md:text-sm font-bold text-white transition-colors duration-300 focus:outline-none flex items-center justify-center gap-2">
                         <i class="fa-solid fa-car"></i> O Fusca (Manual)
                     </button>
-                    <button onclick="switchCarMode('autonomo')" id="btn-autonomo" class="relative z-10 px-6 md:px-8 py-3 w-40 md:w-48 text-xs md:text-sm font-bold text-slate-400 transition-colors duration-300 focus:outline-none flex items-center justify-center gap-2">
+                    <button onclick="switchCarMode('autonomo')" id="btn-autonomo" class="relative z-10 px-6 md:px-8 py-2.5 w-40 md:w-48 text-xs md:text-sm font-bold text-slate-400 transition-colors duration-300 focus:outline-none flex items-center justify-center gap-2">
                         <i class="fa-solid fa-satellite-dish"></i> Autônomo (IA)
                     </button>
                 </div>
             </div>
 
             <!-- O "Para-Brisa" (Container Principal Multimídia) -->
-            <div class="relative w-full h-[700px] rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-slate-700 group bg-[#0a0a0a]">
+            <div class="relative w-full h-[440px] md:h-[480px] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-slate-700 group bg-[#0a0a0a]">
                 
                 <!-- ========================================== -->
                 <!-- CAMADA 1: O FUSCA (Modo Tradicional)       -->
@@ -676,30 +873,30 @@
                     </div>
 
                     <!-- UI do Fusca (Analógico) - Este fade independente -->
-                    <div id="fusca-ui-layer" class="absolute bottom-8 left-8 right-8 flex flex-col md:flex-row justify-between items-end pointer-events-none gap-6 ui-transition opacity-100">
+                    <div id="fusca-ui-layer" class="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row justify-between items-end pointer-events-none gap-4 ui-transition opacity-100">
                         
                         <!-- Velocímetro Analógico PIFANDO -->
-                        <div class="hidden md:flex w-40 h-40 rounded-full border-[10px] border-slate-900 bg-amber-900/30 backdrop-blur-md items-center justify-center relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-                            <div class="absolute top-4 text-amber-500/80 text-[10px] font-black font-mono tracking-widest bg-black/40 px-2 py-1 rounded">LEITURA PDF</div>
+                        <div class="hidden md:flex w-28 h-28 rounded-full border-[8px] border-slate-900 bg-amber-900/30 backdrop-blur-md items-center justify-center relative shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+                            <div class="absolute top-3 text-amber-500/80 text-[8px] font-black font-mono tracking-widest bg-black/40 px-2 py-0.5 rounded">LEITURA PDF</div>
                             <!-- Agulha com a animação nova -->
-                            <div class="w-1.5 h-16 bg-gradient-to-t from-amber-700 to-amber-500 origin-bottom absolute bottom-1/2 anim-ponteiro shadow-lg rounded-full"></div>
+                            <div class="w-1.5 h-11 bg-gradient-to-t from-amber-700 to-amber-500 origin-bottom absolute bottom-1/2 anim-ponteiro shadow-lg rounded-full"></div>
                             <!-- Pino central -->
-                            <div class="w-6 h-6 bg-slate-800 rounded-full absolute z-10 border-4 border-amber-600 shadow-inner"></div>
+                            <div class="w-5 h-5 bg-slate-800 rounded-full absolute z-10 border-4 border-amber-600 shadow-inner"></div>
                             
                             <!-- Marcadores visuais do velocímetro -->
                             <div class="absolute w-full h-full rounded-full border border-amber-500/20"></div>
                         </div>
 
-                        <!-- Texto da Dor (Aumentado conforme pedido) -->
-                        <div class="glass-panel border border-amber-900/60 p-8 md:p-10 rounded-[2rem] w-full md:max-w-2xl pointer-events-auto shadow-2xl backdrop-blur-xl">
-                            <h3 class="text-3xl md:text-4xl font-black text-amber-500 mb-4 font-serif italic tracking-tight drop-shadow-md">O Motor Analógico</h3>
+                        <!-- Texto da Dor -->
+                        <div class="glass-panel border border-amber-900/60 p-5 md:p-6 rounded-[1.5rem] w-full md:max-w-2xl pointer-events-auto shadow-2xl backdrop-blur-xl">
+                            <h3 class="text-2xl md:text-3xl font-black text-amber-500 mb-2 font-serif italic tracking-tight drop-shadow-md">O Motor Analógico</h3>
                             
-                            <div class="flex flex-wrap items-center gap-3 mb-6 text-xs text-amber-200 uppercase tracking-widest font-mono">
-                                <span class="bg-amber-900/90 px-3 py-1.5 rounded-md border border-amber-500/50 shadow-inner">Busca CTRL+F</span>
-                                <span class="bg-amber-900/90 px-3 py-1.5 rounded-md border border-amber-500/50 shadow-inner">Leitura Humana</span>
+                            <div class="flex flex-wrap items-center gap-2 mb-3 text-xs text-amber-200 uppercase tracking-widest font-mono">
+                                <span class="bg-amber-900/90 px-3 py-1 rounded-md border border-amber-500/50 shadow-inner">Busca CTRL+F</span>
+                                <span class="bg-amber-900/90 px-3 py-1 rounded-md border border-amber-500/50 shadow-inner">Leitura Humana</span>
                             </div>
                             
-                            <p class="text-base md:text-lg text-amber-50 leading-relaxed font-medium">
+                            <p class="text-sm md:text-base text-amber-50 leading-relaxed font-medium">
                                 Robusto, mas de alcance limitado. Sua visão noturna é curta: o sistema só encontra o candidato se ele usar <strong class="text-amber-400">exatamente a mesma palavra-chave</strong>. O recrutador é obrigado a ler milhares de PDFs manualmente (engatar marcha por marcha), sujeito à exaustão e aos pontos cegos.
                             </p>
                         </div>
@@ -726,40 +923,40 @@
                     <div class="absolute inset-0 w-full h-[200px] anim-scanline pointer-events-none"></div>
                     
                     <!-- UI do Carro Autônomo -->
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
+                    <div class="absolute inset-0 p-6 flex flex-col justify-between pointer-events-none">
                         
                         <!-- Topo: Telemetria -->
                         <div class="flex justify-between items-start">
                             <div class="flex flex-col gap-2">
-                                <div class="bg-cyan-900/80 border border-cyan-400 px-4 py-2 rounded text-xs text-cyan-300 font-mono font-bold tracking-widest flex items-center gap-2 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.3)]">
+                                <div class="bg-cyan-900/80 border border-cyan-400 px-3 py-1.5 rounded text-[10px] md:text-xs text-cyan-300 font-mono font-bold tracking-widest flex items-center gap-2 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.3)]">
                                     <span class="w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_5px_cyan]"></span>
                                     PILOTO AUTOMÁTICO (E5 EMBEDDINGS) ATIVO
                                 </div>
-                                <div class="text-xs font-mono text-cyan-400/80 tracking-widest drop-shadow-md ml-1">PROCESSANDO 250.000 VETORES/SEG</div>
+                                <div class="text-[10px] md:text-xs font-mono text-cyan-400/80 tracking-widest drop-shadow-md ml-1">PROCESSANDO 250.000 VETORES/SEG</div>
                             </div>
                             
                             <!-- Radar Superior Direito -->
-                            <div class="hidden md:flex w-32 h-32 rounded-full border border-cyan-500/50 bg-cyan-950/60 backdrop-blur-md relative overflow-hidden items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.2)]">
+                            <div class="hidden md:flex w-24 h-24 rounded-full border border-cyan-500/50 bg-cyan-950/60 backdrop-blur-md relative overflow-hidden items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.2)]">
                                 <div class="absolute inset-0 border-2 border-cyan-500 rounded-full scale-75 opacity-30"></div>
                                 <div class="absolute inset-0 border-2 border-cyan-500 rounded-full scale-50 opacity-50"></div>
                                 <!-- Linha do Radar -->
                                 <div class="absolute w-1/2 h-1 bg-gradient-to-r from-transparent to-cyan-400 origin-right right-1/2 anim-radar shadow-[0_0_15px_cyan]"></div>
                                 <!-- Pontos de Match (Talentos) -->
-                                <div class="absolute w-2 h-2 bg-white rounded-full top-8 left-8 shadow-[0_0_8px_white]"></div>
-                                <div class="absolute w-1.5 h-1.5 bg-cyan-200 rounded-full bottom-10 right-8 shadow-[0_0_8px_white] animate-ping"></div>
+                                <div class="absolute w-2 h-2 bg-white rounded-full top-6 left-6 shadow-[0_0_8px_white]"></div>
+                                <div class="absolute w-1.5 h-1.5 bg-cyan-200 rounded-full bottom-7 right-6 shadow-[0_0_8px_white] animate-ping"></div>
                             </div>
                         </div>
 
-                        <!-- Texto da Solução (Equiparado em tamanho com o Fusca) -->
-                        <div class="glass-panel border border-cyan-500/50 p-8 md:p-10 rounded-[2rem] w-full md:max-w-2xl pointer-events-auto shadow-[0_0_50px_rgba(14,165,233,0.15)] ml-auto mt-auto backdrop-blur-xl">
-                            <h3 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 mb-4 tracking-tight">Navegação Semântica</h3>
+                        <!-- Texto da Solução -->
+                        <div class="glass-panel border border-cyan-500/50 p-5 md:p-6 rounded-[1.5rem] w-full md:max-w-2xl pointer-events-auto shadow-[0_0_50px_rgba(14,165,233,0.15)] ml-auto mt-auto backdrop-blur-xl">
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 mb-2 tracking-tight">Navegação Semântica</h3>
                             
-                            <div class="flex flex-wrap gap-3 mb-6 text-xs text-cyan-100 uppercase tracking-widest font-mono">
-                                <span class="bg-blue-900/80 border border-blue-400/80 px-3 py-1.5 rounded-md shadow-inner"><i class="fa-solid fa-brain mr-1"></i> Auditoria LLM</span>
-                                <span class="bg-cyan-900/80 border border-cyan-400/80 px-3 py-1.5 rounded-md shadow-inner"><i class="fa-solid fa-steering-wheel mr-1"></i> Human in the Loop</span>
+                            <div class="flex flex-wrap gap-2 mb-3 text-xs text-cyan-100 uppercase tracking-widest font-mono">
+                                <span class="bg-blue-900/80 border border-blue-400/80 px-3 py-1 rounded-md shadow-inner"><i class="fa-solid fa-brain mr-1"></i> Auditoria LLM</span>
+                                <span class="bg-cyan-900/80 border border-cyan-400/80 px-3 py-1 rounded-md shadow-inner"><i class="fa-solid fa-steering-wheel mr-1"></i> Human in the Loop</span>
                             </div>
                             
-                            <p class="text-base md:text-lg text-blue-50 leading-relaxed font-medium">
+                            <p class="text-sm md:text-base text-blue-50 leading-relaxed font-medium">
                                 Você continua no banco do motorista, mas agora com visão ampliada. O motor híbrido da IA faz a varredura das trajetórias, entendendo contextos e sinônimos, enquanto mapeia as dimensões dos perfis. <strong class="text-cyan-300">A IA entrega o dossiê na sua mão, pronta para a sua tomada de decisão final.</strong>
                             </p>
                         </div>
